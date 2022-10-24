@@ -1,0 +1,216 @@
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <string.h>
+#include <windows.h>
+
+using namespace std;
+
+
+//inico de la estructura
+struct 
+{
+    //variables
+    int numart=0, year=0;
+    float preciouni=0, iva=0, total=0;
+    string nombre, clasif, caracteristicas, desc, genero;
+
+};
+
+float iva(float x, float y);
+float total(float x, float y);
+
+int main()
+{
+    compras[3];
+    int opc, opc2, busq;
+    string genb, clasb;
+    do
+    {
+        printf("\t ***Tienda de videojuegos KRYGERS*** \n");
+        //menu de opciones
+        printf(" 1.-Agregar articulo \n 2.-Modificar articulo \n 3.-Eliminar articulo \n 4.-Lista de articulos vigentes\n 5.-Limpiar Pantalla \n 6.- Salir \n");
+        scanf_s("%d", &opc);
+        //switch
+        switch (opc)
+        {
+        case 1:
+            for (int i = 0; i < 3; i++) 
+            {
+                //ciclo repetitivo
+                do
+                {
+                    printf("Ingrese el numero del articulo\n");
+                    scanf_s("%d", &compras[i].numart);
+                } while (compras[i].numart == compras[i - 1].numart || compras[i].numart == compras[i - 2].numart);
+                printf("Ingrese el nombre del videojuego\n");
+                cin.ignore();
+                getline(cin, compras[i].nombre);
+                printf("Ingrese el a%co de lanzamiento\n", 164);
+                scanf_s("%d", &compras[i].year);
+                printf("Ingrese la clasificacion\n");
+                cin.ignore();
+                getline(cin, compras[i].clasif);
+                printf("Ingrese las caracteristicas del videojuego\n");
+                cin.ignore();
+                getline(cin, compras[i].caracteristicas);
+                printf("Ingrese la descripcion del videojuego\n");
+                cin.ignore();
+                getline(cin, compras[i].desc);
+                printf("Ingrese el genero del videojuego\n");
+                cin.ignore();
+                getline(cin, compras[i].genero);
+                printf("Ingrese el precio unitario\n");
+                scanf_s("%f", &compras[i].preciouni);
+                printf("El precio unitario es %f\n", compras[i].preciouni);
+                compras[i].iva = iva(compras[i].preciouni, 0.16);
+                printf("El iva es de %f\n", compras[i].iva);
+                compras[i].total = total(compras[i].preciouni, compras[i].iva);
+                printf("El precio total del videojuego es %f\n", compras[i].total);
+                system("pause");
+            }
+            break;
+        case 2:
+            //modificar articulo
+            printf("ingrese el numero de articulo que quiere modificar\n");
+            scanf_s("%d", &busq);
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (busq == bd[i].numart)
+                {
+                    printf("Ingresar el nombre del videojuego\n");
+                    cin.ignore();
+                    getline(cin, bd[i].nombre);
+                    printf("Ingresar el A%co de lanzamiento\n", 164);
+                    scanf_s("%d", &bd[i].year);
+                    printf("Ingresar la clasificacion\n");
+                    cin.ignore();
+                    getline(cin, bd[i].clasif);
+                    printf("Ingrese las caracteristicas\n");
+                    getline(cin, bd[i].Caracteristicas);
+                    printf("Ingresar la descripcion\n");
+                    getline(cin, bd[i].desc);
+                    printf("Ingresar el genero\n");
+                    getline(cin, bd[i].genero);
+                    printf("Ingrese el precio unitario\n");
+                    scanf_s("%f", &bd[i].preciouni);
+                    bd[i].imp = bd[i].pu * .16;
+                    printf("El impuesto es :%f\n", bd[i].iva);
+                    bd[i].total = bd[i].pu * 1.16;
+                    printf("El precio total del videojuego es: %f\n", bd[i].total);
+                }
+            }
+            break;
+        case 3:
+            
+            printf("Ingrese el numero de articulo que deseea eliminar\n");
+            scanf_s("%d", &busq);
+            busq = busq - 1;
+            for (int i = busq; i == busq; i++)
+            {
+                bd[i].numart = 0;
+                bd[i].preciouni = 0;
+                bd[i].iva = 0;
+                bd[i].total = 0;
+                bd[i].year = 0;
+                bd[i].clasif = " ";
+                bd[i].caracteristicas = " ";
+                bd[i].desc = " ";
+                bd[i].genero = " ";
+                bd[i].nombre = " ";
+            }
+        
+            break;
+        case 4: 
+            printf("selecciona como ver la lista\n",);
+            printf("1.-Genero\n2.-Clasificacion\n3.-Todos\n");
+            scanf_s("%d", &busq);
+            switch (busq)
+            {
+            case 1:
+                printf("Ingrese el genero que desea buscar\n");
+                cin.ignore();
+                getline(cin, genb);
+                for (int i = 0; i < 3; i++)
+                {
+                    if (genb.compare(compras[i].genero)==0)
+                    {
+                        printf("\n\nNumero de articulo: %d\n", compras[i].numart);
+                        printf("Nombre: %s\n", compras[i].nombre.c_str());
+                        printf("A%co de lanzamiento: %d\n", 164, compras[i].year);
+                        printf("Clasificacion: %s\n", compras[i].clasif.c_str());
+                        printf("Caracteristicas: %s\n", compras[i].caracteristicas.c_str());
+                        printf("Descripcion: %s\n", compras[i].desc.c_str());
+                        printf("Genero: %s\n", compras[i].genero.c_str());
+                        printf("Precio unitario: %f\n", compras[i].preciouni);
+                        printf("IVA: %f\n", compras[i].iva);
+                        printf("Precio total: %f\n", compras[i].total);
+                        system("pause");
+                    }
+                }
+                break;
+            case 2:
+                printf("Ingrese la clasificacion que desea buscar\n");
+                cin.ignore();
+                getline(cin, clasb);
+                for (int i = 0; i < 3; i++)
+                {
+                    if (clasb.compare(compras[i].clasif)==0)
+                    {
+                        printf("\n\nNumero de articulo: %d\n", compras[i].numart);
+                        printf("Nombre: %s\n", compras[i].nombre.c_str());
+                        printf("A%co de lanzamiento: %d\n", 164, compras[i].year);
+                        printf("Clasificacion: %s\n", compras[i].clasif.c_str());
+                        printf("Caracteristicas: %s\n", compras[i].caracteristicas.c_str());
+                        printf("Descripcion: %s\n", compras[i].desc.c_str());
+                        printf("Genero: %s\n", compras[i].genero.c_str());
+                        printf("Precio unitario: %f\n", compras[i].preciouni);
+                        printf("IVA: %f\n", compras[i].iva);
+                        printf("Precio total: %f\n", compras[i].total);
+                        system("pause");
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < 3; i++)
+                {
+                    printf("\n\nNumero de articulo: %d\n", compras[i].numart);
+                    printf("Nombre: %s\n", compras[i].nombre.c_str());
+                    printf("A%co de lanzamiento: %d\n", 164, compras[i].year);
+                    printf("Clasificacion: %s\n", compras[i].clasif.c_str());
+                    printf("Caracteristicas: %s\n", compras[i].caracteristicas.c_str());
+                    printf("Descripcion: %s\n", compras[i].desc.c_str());
+                    printf("Genero: %s\n", compras[i].genero.c_str());
+                    printf("Precio unitario: %f\n", compras[i].preciouni);
+                    printf("IVA: %f\n", compras[i].iva);
+                    printf("Precio total: %f\n", compras[i].total);
+                    system("pause");
+                }
+                break;
+            }
+            break;
+        case 5:
+            system("cls");
+            break;
+        case 6:
+            printf("finaizad...");
+            break;
+        }
+    } while (opc != 6);
+}
+
+float iva(float x, float y)
+{
+    float res;
+    res = x * y;
+    return res;
+}
+
+float total(float x, float y)
+{
+    float res;
+    res = x + y;
+    return res;
+}
+}
